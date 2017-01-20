@@ -1,5 +1,8 @@
 # USB Mountr
 A helper application to set the Mass Storage Device gadget up in Android kernels  
+[<img src="https://f-droid.org/badge/get-it-on.png"
+      alt="Get it on F-Droid"
+      height="80">](https://f-droid.org/app/streetwalrus.usbmountr)  
 ![Screenshot](/screenshot.png?raw=true)
 
 ## How it works
