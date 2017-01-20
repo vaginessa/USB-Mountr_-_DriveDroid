@@ -1,7 +1,7 @@
 package streetwalrus.usbmountr
 
-import android.app.Activity
 import android.app.AlertDialog
+import android.app.ListActivity
 import android.content.Intent
 import android.content.res.XmlResourceParser
 import android.net.Uri
@@ -16,7 +16,7 @@ import android.widget.ListView
 import android.widget.TextView
 import java.io.InputStreamReader
 
-class LicenseActivity : Activity() {
+class LicenseActivity : ListActivity() {
     private val TAG = "LicenseActivity"
 
     private var prefLayout = -1
@@ -39,9 +39,25 @@ class LicenseActivity : Activity() {
             }
         }
 
-        mList = findViewById(R.id.license_list) as ListView
+        mList = findViewById(android.R.id.list) as ListView
         val licensesAdapter = LicenseArrayAdapter(licenseList)
         mList!!.adapter = licensesAdapter
+    }
+
+    override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
+        val licenseTextLayout = layoutInflater.inflate(R.layout.dialog_license, null, false)
+        val licenseTextView = licenseTextLayout.findViewById(R.id.textView) as TextView
+        val lic = (l.adapter as LicenseArrayAdapter).getItem(position)
+        licenseTextView.text = InputStreamReader(assets.open("licenses/${lic.file}")).readText()
+        licenseTextView.movementMethod = ScrollingMovementMethod()
+        AlertDialog.Builder(this@LicenseActivity)
+                .setTitle(lic.name)
+                .setView(licenseTextLayout)
+                .setPositiveButton(R.string.licenses_upstream, { dialog, which ->
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(lic.url))
+                    startActivity(intent)
+                })
+                .show()
     }
 
     private inner class License(xrp: XmlResourceParser) {
@@ -66,21 +82,6 @@ class LicenseActivity : Activity() {
                 else
                     summary.visibility = View.GONE
                 (view!!.findViewById(android.R.id.widget_frame) as ViewGroup).visibility = View.GONE
-
-                view!!.setOnClickListener {
-                    val licenseTextLayout = layoutInflater.inflate(R.layout.dialog_license, null, false)
-                    val licenseTextView = licenseTextLayout.findViewById(R.id.textView) as TextView
-                    licenseTextView.text = InputStreamReader(assets.open("licenses/$file")).readText()
-                    licenseTextView.movementMethod = ScrollingMovementMethod()
-                    AlertDialog.Builder(this@LicenseActivity)
-                            .setTitle(name)
-                            .setView(licenseTextLayout)
-                            .setPositiveButton(R.string.licenses_upstream, { dialog, which ->
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                                startActivity(intent)
-                            })
-                            .show()
-                }
             }
             return view
         }
