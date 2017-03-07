@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import java.io.File
 
 class FilePickerPreference : Preference, ActivityResultDispatcher.ActivityResultHandler {
@@ -40,7 +41,9 @@ class FilePickerPreference : Preference, ActivityResultDispatcher.ActivityResult
 
     override fun onClick() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "file/*"
+        intent.type = "*/*"
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
 
         val activity = context as Activity
         activity.startActivityForResult(intent, mActivityResultId)
@@ -48,10 +51,18 @@ class FilePickerPreference : Preference, ActivityResultDispatcher.ActivityResult
 
     override fun onActivityResult(resultCode: Int, resultData: Intent?) {
         if (resultCode == Activity.RESULT_OK && resultData != null) {
-            val path = PathResolver.getPath(context, resultData.data)
-            Log.d(TAG, "Picked file $path")
-            persistString(path)
-            updateSummary()
+            try {
+                val path = PathResolver.getPath(context, resultData.data)
+                Log.d(TAG, "Picked file $path")
+                persistString(path)
+                updateSummary()
+            } catch (e: SecurityException) {
+                // I'm extremely lazy and don't want to figure permissions out right now
+                Toast.makeText(context.applicationContext,
+                        context.getString(R.string.file_picker_denied),
+                        Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
