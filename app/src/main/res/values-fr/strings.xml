@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">USB Mountr</string>
+    <string name="licenses">Licences</string>
+    <string name="licenses_upstream">Source</string>
+    <string name="file_picker_nofile">Aucun</string>
+
+    <!-- Visible in the activity-->
+    <string name="host_source_file">Fichier image</string>
+    <string name="host_ro">Lecture seule</string>
+    <string name="host_ro_summary">Empèche l\'ordinateur d\'écrire dans l\'image</string>
+    <string name="host_serve">Monter</string>
+    <string name="host_disable">Démonter</string>
+    <string name="host_help">Cette application va essayer de coexister avec les services USB Android,
+        mais le système peut les désactiver à tout momment.</string>
+
+    <!-- Toast messages -->
+    <string name="host_success">Le disque devrait apparaître sur votre ordinateur</string>
+    <string name="host_disable_success">Le disque devrait disparaître de votre ordinateur</string>
+    <string name="host_noroot">Impossible d\'obtenir les droits de super-utilisateur</string>
+    <string name="file_picker_denied">Merci de donner accès au stockage pour accéder aux fichiers</string>
+</resources>
