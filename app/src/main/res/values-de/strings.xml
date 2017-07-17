@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">USB Mountr</string>
+
+    <string name="licenses">Lizenzen</string>
+    <string name="licenses_upstream">Originalquellen</string>
+
+    <string name="file_picker_nofile">Keine Datei ausgewählt</string>
+
+    <!-- Visible in the activity -->
+    <string name="host_source_file">Imagedatei</string>
+    <string name="host_ro">Schreibschutz</string>
+    <string name="host_ro_summary">Verhindert dass der PC auf das Image schreiben beziehungsweise Dateien verändern kann</string>
+    <string name="host_serve">Mounten</string>
+    <string name="host_disable">Unmounten</string>
+    <string name="host_help">Diese Applikation versucht mit dem Android USB-Subsystem zu koexistieren, aber Android kann die von der App vorgenommmenen Änderungen am System jederzeit zurücksetzen.</string>
+
+    <!-- Toast messages -->
+    <string name="host_success">Das Laufwerk sollte nun auf Ihrem PC angezeigt werden</string>
+    <string name="host_disable_success">Das Laufwerk sollte nun nicht mehr auf Ihrem PC angezeigt werden</string>
+    <string name="host_noroot">Root-Zugriff verweigert</string>
+    <string name="file_picker_denied">Bitte geben Sie der App die Berechtigung für den Zugriff auf den Speicher um auf diese Datei zugreifen zu können</string>
+</resources>
