@@ -21,4 +21,5 @@ images. Feel free to translate the application to your own language as well.
 
 ## Donations
 I've been asked for donation info, so here it is.  
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SHUNWU2HDU7EY)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SHUNWU2HDU7EY)  
+BTC: 199wYd9jB9yfBdXsfCXXESjzDHLHoKpBdd
