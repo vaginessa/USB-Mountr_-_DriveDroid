@@ -71,7 +71,7 @@ class MainActivity : Activity() {
             val ro = params[1]
             val enable = params[2]
 
-            if (!Shell.SU.run(arrayOf(
+            if (!(Shell.SU.run(arrayOf(
                     "echo 0 > $usb/enable",
                     // Try to append if the function is not already enabled (by ourselves most likely)
                     "grep mass_storage $usb/functions > /dev/null || sed -e 's/$/,mass_storage/' $usb/functions | cat > $usb/functions",
@@ -89,7 +89,7 @@ class MainActivity : Activity() {
                     "echo $ro > $usb/f_mass_storage/lun/ro",
                     "echo $file > $usb/f_mass_storage/lun/file",
                     "echo success"
-            )).isEmpty()) {
+            ))?.isEmpty() ?: true)) {
                 if (enable != "0") {
                     return R.string.host_success
                 } else {
